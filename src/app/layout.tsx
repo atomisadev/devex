@@ -1,18 +1,17 @@
-import './globals.css'
+"use client";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+import { SessionProvider } from "next-auth/react";
+import "./globals.css";
+
+export default function RootLayout(props: any) {
   return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>{children}</body>
+    <html>
+      <head></head>
+      <body>
+        <SessionProvider session={props.session}>
+          {props.children}
+        </SessionProvider>
+      </body>
     </html>
-  )
+  );
 }
